@@ -1,2 +1,27 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<h1>New Post</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <p>Guidelines for posts</p>
+        <ul>
+            <li>Please try to rhyme.</li>
+            <li>Not using the letter "A" will save you time.</li>
+            <li>Using numerous hashtags will get you banned, and cost you a dime. </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <%= form_for @post do |f| %>
+        <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-contorl', placeholder: "Enter post title" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter post body" %>
+        </div>
+        <div class="form-group">
+            <%= f.submit "Save", class: 'btn btn-sucess' %>
+        </div>
+        <% end %>
+    </div>
+</div>
