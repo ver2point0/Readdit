@@ -16,7 +16,7 @@ module RandomData
       end
       
       sentence = strings.join(" ")
-      sentence.capitalize << "."
+      sentence.capitalize << "?"
     end
     
     def random_word
