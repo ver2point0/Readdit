@@ -93,7 +93,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
   end
   
-  describe "QUESTION #create" do
+  describe "POST #create" do
     it "increases the number of Question by 1" do
       expect{post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false}}.to change(Question,:count).by(1)
     end
