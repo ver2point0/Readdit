@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
-  # post routes for creating, updating, viewing, deleting instances of post
-  resources :posts
+  resources :topics do
+    resources :posts, except: [:index]  
+  end
 
   get 'about' => 'welcome#about'
 
