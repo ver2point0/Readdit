@@ -9,10 +9,6 @@ class SponsoredPostsController < ApplicationController
     @sponsored_post = SponsoredPost.new
   end
 
-  def sponsored_post_params
-    params[:sponsored_post].permit(:title, :body, :price)  
-  end
-
   def create
     @topic = Topic.find(params[:topic_id])
     @sponsored_post = SponsoredPost.new(sponsored_post_params)
@@ -29,9 +25,9 @@ class SponsoredPostsController < ApplicationController
 
   def update
     @sponsored_post = SponsoredPost.find(params[:id])
-    @sponsored_post.update(sponsored_post_params)
     
     if @sponsored_post.save
+      @sponsored_post.update(sponsored_post_params)
       flash[:notice] = "Sponsored post was updated."
       redirect_to [@sponsored_post.topic, @sponsored_post]
     else
@@ -55,4 +51,11 @@ class SponsoredPostsController < ApplicationController
       render :show
     end
   end
+  
+  private
+  
+      def sponsored_post_params
+        params[:sponsored_post].permit(:title, :body, :price)  
+      end
+  
 end
