@@ -9,7 +9,10 @@ RSpec.describe User, type: :model do
   
   # Shoulda tests for email
   it { should validate_presence_of(:email) }
-  it { should validate_uniqueness_of(:email) }
+  it { 
+      allow(user).to receive(:capitalize_name)
+      should validate_uniqueness_of(:email) 
+  }
   it { should validate_length_of(:email).is_at_least(3) }
   it { should allow_value("user@readdit.com").for(:email) }
   it { should_not allow_value("userreaddit.com").for(:email) }
@@ -18,6 +21,12 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:password) }
   it { should have_secure_password }
   it { should validate_length_of(:password).is_at_least(6) }
+  
+  describe "capitalize name" do 
+    it "should capitalize first and last name" do
+      expect(user.name).to eq("Readdit User")
+    end
+  end
   
   describe "attributes" do
     it "should respond to name" do
