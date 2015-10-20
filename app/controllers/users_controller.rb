@@ -13,6 +13,7 @@ class UsersController < ApplicationController
        
        if @user.save
            flash[:notice] = "Welcome to Readdit #{@user.name}!"
+           create_session(@user)
            redirect_to root_path
        else
            flash[:error] = "There was an error create your account. Please try again"
