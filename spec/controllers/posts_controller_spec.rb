@@ -2,8 +2,9 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe PostsController, type: :controller do
+  let(:my_user) { User.create!(name: "Readdit User", email: "user@readdit.io", password: "helloworld") }
   let (:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let (:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  let (:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
 
   describe "GET show" do
     it "returns http success" do
