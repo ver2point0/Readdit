@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { User.create!(name: "Readdit User", email: "user@readdit.com", password: "password") }
   
-  # Shoulda test for post and comments association
+  # Shoulda test for post, comments, votes association
   it { should have_many(:posts) }
   it { should have_many(:comments) }
+  it { should have_many(:votes) }
 
   # Shoulda tests for name
   it { should validate_presence_of(:name) }
