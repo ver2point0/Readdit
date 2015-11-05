@@ -18,6 +18,9 @@ group :development, :test do
   gem 'shoulda'
 end
 
+# Used for secure environment variables
+gem 'figaro', '1.0'
+
 # Use SASS for bootstrap
 gem 'bootstrap-sass'
 
