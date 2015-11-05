@@ -2,7 +2,7 @@ require 'rails_helper'
 include RandomData
 
 RSpec.describe User, type: :model do
-  let(:user) { User.create!(name: "Readdit User", email: "user@readdit.com", password: "password") }
+  let(:user) { create(:user) }
   
   # Shoulda test for post, comments, votes, favorites association
   it { should have_many(:posts) }
@@ -110,6 +110,22 @@ RSpec.describe User, type: :model do
     it "returns the appropriate favorite if it exists" do
       favorite = user.favorites.where(post: @post).create
       expect(user.favorite_for(@post)).to eq(favorite)
+    end
+  end
+  
+  describe ".avatar_url" do
+    
+    let(:known_user) { create(:user, email: "readdithead@readdit.io") }
+    
+    it "returns the proper Gravatar url for a known email entity" do
+      # expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
+      
+      # Changed gravatar_id from the one used in checkpoint
+      # rspec displayed error saying it expected "http://gravatar.com/avatar/b9fdb2af8e937d65c99a342f9fbb6f60.png?s=48" 
+      #                                      not "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
+      
+      expected_gravatar = "http://gravatar.com/avatar/b9fdb2af8e937d65c99a342f9fbb6f60.png?s=48"
+      expect(User.avatar_url(known_user, 48)). to eq(expected_gravatar)  
     end
   end
   
