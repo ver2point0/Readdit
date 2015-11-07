@@ -20,8 +20,8 @@
     </div>
 </div>
 
-<h2>Posts</h2>
+<h2><%= user_posts?(current_user) %></h2>
 <%= render @user.posts %>
 
-<h2>Comments</h2>
+<h2><%= user_comments?(current_user) %></h2>
 <%= render @user.comments %>
