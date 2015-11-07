@@ -16,10 +16,6 @@
 !/log/.keep
 /tmp
 
-<<<<<<< HEAD
 # Ignore application configuration
 /config/application.yml
-=======
-# Ignore environment variables
-/config/application.yml
->>>>>>> checkpoint-43-voting
+
