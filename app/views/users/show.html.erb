@@ -13,7 +13,8 @@
                 <h2 class="media-heading"><%= @user.name %></h2>
                 <small>
                     <%= pluralize(@user.posts.count, 'post') %>,
-                    <%= pluralize(@user.comments.count, 'comment') %>
+                    <%= pluralize(@user.comments.count, 'comment') %>,
+                    <%= pluralize(@user.favorites.count, 'favorite') %>
                 </small>
             </div>
         </div>
@@ -25,3 +26,17 @@
 
 <h2><%= user_comments?(current_user) %></h2>
 <%= render @user.comments %>
+
+<h2><%= user_favorites?(current_user) %></h2>
+<% @user.favorites.each do |f| %>
+  <% avatar_favorite = User.avatar_url(f.post.user, 48) %>
+    <% unless avatar_favorite.nil? %>
+      <div class="media-left">
+        <%= image_tag avatar_favorite, class: 'media-object' %>
+      </div>
+    <% end %>
+    <div class="media-right">
+      <%= render f.post %>
+    </div>
+<% end %>
+  
