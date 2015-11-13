@@ -118,14 +118,14 @@ RSpec.describe User, type: :model do
     let(:known_user) { create(:user, email: "readdithead@readdit.io") }
     
     it "returns the proper Gravatar url for a known email entity" do
-      # expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
-      
-      # Changed gravatar_id from the one used in checkpoint
-      # rspec displayed error saying it expected "http://gravatar.com/avatar/b9fdb2af8e937d65c99a342f9fbb6f60.png?s=48" 
-      #                                      not "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
-      
       expected_gravatar = "http://gravatar.com/avatar/b9fdb2af8e937d65c99a342f9fbb6f60.png?s=48"
       expect(User.avatar_url(known_user, 48)). to eq(expected_gravatar)  
+    end
+  end
+  
+  describe "#generate_auth_token" do
+    it "creates a token" do
+      expect(user.auth_token).to_not be_nil  
     end
   end
   
