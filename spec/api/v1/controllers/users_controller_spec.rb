@@ -17,7 +17,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
   end
   
-  context "authenticated and unauthorized users" do
+  context "uauthenticated and unauthorized users" do
     
     before do
       controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)    
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(response.content_type).to eq('application/json')      
       end
       
-      it "returns my_post serialized" do
+      it "returns my_user serialized" do
         expect([my_user].to_json).to eq(response.body)      
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(response.content_type).to eq('application/json')      
       end
       
-      it "returns my_post serialized" do
+      it "returns my_user serialized" do
         expect(my_user.to_json).to eq(response.body)  
       end
     end
