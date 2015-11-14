@@ -28,15 +28,6 @@
 <%= render @user.comments %>
 
 <h2><%= user_favorites?(current_user) %></h2>
-<% @user.favorites.each do |f| %>
-  <% avatar_favorite = User.avatar_url(f.post.user, 48) %>
-    <% unless avatar_favorite.nil? %>
-      <div class="media-left">
-        <%= image_tag avatar_favorite, class: 'media-object' %>
-      </div>
-    <% end %>
-    <div class="media-right">
-      <%= render f.post %>
-    </div>
-<% end %>
+<%= render partial: "posts/post", collection: current_user.favorites.map(&:post) %>
+
   

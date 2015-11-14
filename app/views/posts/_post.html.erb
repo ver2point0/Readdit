@@ -5,9 +5,14 @@
             <%= link_to post.title, topic_post_path(post.topic, post) %>
             <%= render partial: "labels/list", locals: { labels: post.labels } %>
         </h4>
-        <small>
-            submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-            <%= post.comments.count %> Comments
-        </small>
+        <div class="media-left">
+            <%= image_tag User.avatar_url(post.user, 48), class: 'media-object' %>
+        </div>
+        <div class="media-right">
+           <small>
+              submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+              <%= post.comments.count %> Comments
+           </small>
+        </div>
     </div>
 </div>
