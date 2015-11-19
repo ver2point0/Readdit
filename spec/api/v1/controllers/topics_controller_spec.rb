@@ -65,7 +65,7 @@ RSpec.describe Api::V1::TopicsController, type: :controller do
     end
   end
   
-  context "authenticate and authorized users" do
+  context "authenticated and authorized users" do
     
     before do
       my_user.admin!
