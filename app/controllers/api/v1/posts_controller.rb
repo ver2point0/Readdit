@@ -17,7 +17,7 @@ class Api::V1::PostsController < Api::V1::BaseController
    end
    
    def update
-     post = Post.find(post_params)
+     post = Post.find(params[:id])
      
      if post.update_attributes(post_params)
        render json: post.to_json, status: 200
@@ -40,7 +40,7 @@ class Api::V1::PostsController < Api::V1::BaseController
    end
    
    def destroy
-     post = Post.find(post_params)
+     post = Post.find(params[:id])
      
      if post.destroy
        render json: {message: "Post destroyed", status: 200}, status: 200
